@@ -12,23 +12,19 @@ exports.fetchKey = async function() {
                 });
                 async function fetchKey() {
                     return new Promise(async function(resolve, rej) {
-                        let done = 0; let key;
-                        while(done !== urls.length && !key) {
-                            let url = urls[done];
-                            done++;
-                            if(/(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(url)) {
-                                require('https').get(url, async a => {
-                                    a.on('data', async d => {
-                                        const b = d.toString()
-                                        if(b.includes(',client_id:"')) {
-                                            const thingA = b.split(',client_id:"');
-                                            key = thingA[1].split('"')[0];
-                                            if(done === urls.length) return resolve(key)
-                                        }
-                                    })
-                                });
-                            }
-                        };
+                        let key;
+                        require('https').get(urls[urls.length - 1], async a => {
+                            a.on('data', async d => {
+                                const b = d.toString()
+                                if(b.includes(',client_id:"')) {
+                                    const thingA = b.split(',client_id:"');
+                                    key = thingA[1].split('"')[0];
+                                    return resolve(key)
+                                }
+
+                                return resolve('')
+                            })
+                        });
                     })
                 }
                 const key = await fetchKey()
