@@ -11,10 +11,10 @@ yarn add soundcloud-key-fetch
 ---
 ## API
 ### sckey.fetchKey()
-- Returns a string conatining an API key that was scraped from SoundCloud.
+- Returns a string of an API token that was scraped from SoundCloud. ***Note:*** *This token contains no extra special privileges in the API, such as SoundCloud GO access; the token only provides the same amount of access as a user listening to SoundCloud without an account has.*
 
 ### sckey.testKey(key)
-- Returns a boolean on whether or not the given key is valid.
+- Returns a boolean on whether or not the given key is valid. This function tests a given key against a SoundCloud API endpoint, and will verify it based on the response code given by the server. It will return "true" if the server responds with 404 or 200, "false" if the server responds with 401 or 403.
 
 ## Usage
 #### Fetching a SoundCloud key
@@ -25,7 +25,7 @@ sckey.fetchKey().then(key => {
     console.log(key)
 });
 
-// await is also supported!
+// the function initially returns a promise, so you can either use the example above *or* you can call "await" like the example below.
 
 const key = await sckey.fetchKey();
 ```
@@ -43,7 +43,7 @@ sckey.testKey('SC-KEY').then(result => {
 	}
 });
 
-// await is also supported!
+// the function initially returns a promise, so you can either use the example above *or* you can call "await" like the example below.
 
 const test = await sckey.testKey('SC-KEY');
 ```
