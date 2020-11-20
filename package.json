@@ -41,6 +41,10 @@
   "license": "ISC",
   "main": "index.js",
   "name": "soundcloud-key-fetch",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/syqwq/soundcloud-key-fetch"
+  },
   "scripts": {
     "test": "node test.js"
   },
