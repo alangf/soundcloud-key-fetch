@@ -1,8 +1,12 @@
 exports.fetchKey = async function() {
     return new Promise(async function(resolve, rej) {
         require('https').get('https://soundcloud.com/', (res) => {
+            let r = ''
             res.on('data', async (d) => {
-                r = d.toString()
+                r += d
+            })
+
+            res.on('end', async () => {
                 const res = r.split('<script crossorigin src="');
                 const urls = [];
                 res.forEach(urlA => {
@@ -14,16 +18,21 @@ exports.fetchKey = async function() {
                     return new Promise(async function(resolve, rej) {
                         let key;
                         require('https').get(urls[urls.length - 1], async a => {
+                            let data = ''
                             a.on('data', async d => {
-                                const b = d.toString()
-                                if(b.includes(',client_id:"')) {
-                                    const thingA = b.split(',client_id:"');
+                                data += d
+                            })
+
+                            a.on('end', () => {
+                                if(data.includes(',client_id:"')) {
+                                    const thingA = data.split(',client_id:"');
                                     key = thingA[1].split('"')[0];
                                     return resolve(key)
                                 }
-
                                 return resolve('')
                             })
+
+                            a.on('error', () => rej(err))
                         });
                     })
                 }
