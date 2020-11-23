@@ -1,5 +1,4 @@
-# [soundcloud-key-fetch](https://www.npmjs.com/package/soundcloud-key-fetch) 
-### *[soundcloud-key-fetch on GitLab](https://gitlab.com/syqwq/soundcloud-key-fetch)*
+# [soundcloud-key-fetch](https://www.npmjs.com/package/soundcloud-key-fetch) — *[GitLab](https://gitlab.com/syqwq/soundcloud-key-fetch)*
 A simple module to fetch a SoundCloud API key without owning an application, requiring no dependencies!
 ```
 npm i soundcloud-key-fetch
