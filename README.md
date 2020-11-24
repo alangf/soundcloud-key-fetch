@@ -46,3 +46,5 @@ sckey.testKey('SC-KEY').then(result => {
 
 const test = await sckey.testKey('SC-KEY');
 ```
+
+huge thank you to [Zack Radisic](https://github.com/zackradisic/) for helping me out a ton w this package
