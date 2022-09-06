@@ -19,7 +19,7 @@
   "name": "soundcloud-key-fetch",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/syqwq/soundcloud-key-fetch"
+    "url": "https://gitlab.com/sylviiu/soundcloud-key-fetch"
   },
   "scripts": {
     "test": "node test.js"
